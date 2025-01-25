@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../utils/AuthContext';
 import FileUpload from '../../components/FileUpload';
+import FileViewer from '../../components/FileViewer';
 import { supabase } from '../../utils/supabase';
 
 export default function ProjectPage() {
@@ -121,6 +122,7 @@ export default function ProjectPage() {
                   <div className="text-sm text-gray-400 mt-1">
                     Uploaded {new Date(file.created_at).toLocaleDateString()}
                   </div>
+                  <FileViewer fileId={file.id} />
                 </div>
               ))}
             </div>
