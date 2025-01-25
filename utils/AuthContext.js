@@ -24,12 +24,12 @@ export const AuthProvider = ({ children }) => {
     initializeAuth()
 
     // Subscribe to auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user || null)
     })
 
     return () => {
-      authListener?.unsubscribe()
+      subscription?.unsubscribe()
     }
   }, [])
 
